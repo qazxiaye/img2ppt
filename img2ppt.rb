@@ -5,9 +5,9 @@ require 'powerpoint'
 
 if ARGV.length > 1
 	puts "Usage:"
-	puts "\033\[0;32m  ./img2ppt\033\[0m : generate ppt using all the images in current folder as backgrounds"
+	puts "\033\[0;32m  ./img2ppt.rb\033\[0m : generate ppt using all the images in current folder as backgrounds"
 	puts "  or"
-	puts "\033\[0;32m  ./img2ppt xxx.zip\033\[0m : unzip the zip file, and generate ppt based on unziped images in current foler"
+	puts "\033\[0;32m  ./img2ppt.rb xxx.zip\033\[0m : unzip the zip file, and generate ppt based on unziped images in current foler"
 	exit
 end
 
