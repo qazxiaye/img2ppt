@@ -11,23 +11,28 @@ if ARGV.length > 1
 	exit
 end
 
+dir = "#{Dir.pwd}"
+
 if ARGV.length == 1
-	puts `unzip -o #{ARGV[0]}`
+    time = Time.new
+    time = "#{time.year}-#{time.month}-#{time.day}-#{time.hour}"
+    dir = "#{dir}/#{time}"
+	puts `unzip -o #{ARGV[0]} -d #{time}`
 end
 
 @deck = Powerpoint::Presentation.new
 coords = {x: 0, y: 0, cx: 9147791, cy: 6870610}
 
 isImg = false
-for img in Dir["#{Dir.pwd}/*.jpg"]
+for img in Dir["#{dir}/*.jpg"].sort
     @deck.add_pictorial_slide '', img, coords
 	isImg = true
 end
-for img in Dir["#{Dir.pwd}/*.png"]
+for img in Dir["#{dir}/*.png"].sort
     @deck.add_pictorial_slide '', img, coords
 	isImg = true
 end
-for img in Dir["#{Dir.pwd}/*.gif"]
+for img in Dir["#{dir}/*.gif"].sort
     @deck.add_pictorial_slide '', img, coords
 	isImg = true
 end
@@ -36,5 +41,9 @@ if isImg
 	@deck.save('test.pptx')
 else
 	puts "\033\[0;33mNo image found!\033\[0m"
+end
+
+if ARGV.length == 1
+    puts `rm #{dir} -r`
 end
 
